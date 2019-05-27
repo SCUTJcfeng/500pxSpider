@@ -44,11 +44,11 @@ class HttpPool(MyPool):
     def __init__(self, n=5):
         MyPool.__init__(self, n)
 
-    def http_get(self, uid, url, callback, params=None, headers=None, retFormat='text', timeout=10, allow_redirects=True):
-        req = (uid, url, callback, params, headers, retFormat, timeout, allow_redirects)
+    def http_get(self, url, callback, params=None, headers=None, retFormat='text', timeout=10, allow_redirects=True, local_data={}):
+        req = (url, callback, params, headers, retFormat, timeout, allow_redirects, local_data)
         self.put(req)
 
     def process(self, req, i):
-        uid, url, callback, params, headers, retFormat, timeout, allow_redirects = req
+        url, callback, params, headers, retFormat, timeout, allow_redirects, local_data = req
         res, status_code = HttpTool.get(url, params, headers, retFormat, timeout, allow_redirects)
-        callback(uid, res, status_code)
+        callback(req, res, status_code)
