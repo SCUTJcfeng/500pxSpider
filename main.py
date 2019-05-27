@@ -11,7 +11,7 @@ from common.save import SaveTool
 
 base_dir = './pic'
 start_page = 1
-total_page = 10
+total_page = 50
 pool = HttpPool(10)
 
 
@@ -43,6 +43,7 @@ def save_photo(req, res, status_code):
         filename = local_data['filename']
         SaveTool.saveChunk(res, filename)
         print(f'{filename} save success')
+        print(f'unfinished task {pool.count}')
     except:
         pass
 
