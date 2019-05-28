@@ -2,6 +2,7 @@
 
 from bs4 import BeautifulSoup
 from urllib.parse import unquote
+from requests.exceptions import ReadTimeout
 from api import PHOTO_URL, POPULAR_URL, FEATURE_LIST, CATEGORY_LIST
 from common.http import HttpPool, HttpTool
 from common.url import UrlTool
@@ -47,7 +48,7 @@ def save_photo(req, res, status_code):
         SaveTool.saveChunk(res, filename)
         print(f'{filename} save success')
         print(f'unfinished task {pool.count}')
-    except:
+    except ReadTimeout:
         pass
 
 

@@ -5,7 +5,7 @@ from api import PHOTO_URL, POPULAR_URL
 from common.http import HttpTool
 from common.url import UrlTool
 from common.base import create_folder
-from main import get_csrf_token, get_photo_url, save_photo, pool, base_dir, start_page, total_page
+from main import get_csrf_token, get_photo_url, pool, base_dir, start_page, total_page
 
 
 def test():
