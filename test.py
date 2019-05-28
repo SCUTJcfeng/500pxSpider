@@ -1,13 +1,10 @@
 # python 3.6
 
 import time
-from bs4 import BeautifulSoup
-from urllib.parse import unquote
 from api import PHOTO_URL, POPULAR_URL
-from common.http import HttpPool, HttpTool
+from common.http import HttpTool
 from common.url import UrlTool
-from common.base import create_folder, create_path, check_path
-from common.save import SaveTool
+from common.base import create_folder
 from main import get_csrf_token, get_photo_url, save_photo, pool, base_dir, start_page, total_page
 
 

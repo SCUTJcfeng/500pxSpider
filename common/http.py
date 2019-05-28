@@ -2,10 +2,11 @@
 
 import traceback
 import requests
+from requests.exceptions import Timeout
 import urllib3
-urllib3.disable_warnings()
 from common.utils import MyPool
 
+urllib3.disable_warnings()
 s = requests.Session()
 
 
@@ -15,7 +16,7 @@ class HttpTool:
         res = None
         try:
             res = s.get(url, params=params, headers=headers, timeout=timeout, allow_redirects=allow_redirects, verify=False)
-        except:
+        except Timeout:
             traceback.print_exc()
         result = HttpTool.beforeReturn(res, retFormat)
         return (result, res.status_code) if res else (result, -1)
@@ -25,7 +26,7 @@ class HttpTool:
         res = None
         try:
             res = s.post(url, data=data, json=json, headers=headers, timeout=timeout, verify=verify)
-        except:
+        except Timeout:
             traceback.print_exc()
         return HttpTool.beforeReturn(res, retFormat)
 
