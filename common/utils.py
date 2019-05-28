@@ -29,6 +29,7 @@ class MyPool:
                 pass
             except:
                 traceback.print_exc()
+                self.queue.task_done()
 
     @property
     def count(self):
